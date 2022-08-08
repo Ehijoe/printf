@@ -1,25 +1,29 @@
 #include "../main.h"
+#include "test.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <limits.h>
 
 /**
  * test - test main function
  * @format: a string to test printf
  */
- 	 
-void test(const char *format, ...)
+void test_vprintf(const char *format, ...)
 {
-	int expected , actual;
+	int expected , actual = 0;
 	va_list args_list;
-	
+
 	va_start(args_list, format);
-	expected = printf(format, args_list);
+	expected = vprintf(format, args_list);
 	putchar('\n');
-	actual = _printf(format, args_list);
+        va_end(args_list);
+
+	va_start(args_list, format);
+	actual = _vprintf(format, args_list);
 	putchar('\n');
-	printf("expected: %d, actual: %d\n\n", expected, actual);
 	va_end(args_list);
 
+	printf("expected: %d, actual: %d\n\n", expected, actual);
 }
 
 
@@ -29,14 +33,22 @@ void test(const char *format, ...)
  *
  * Return: Always 0
  */
-
 int main(void)
 {
-	test("this is just a test");
-	test("this is just %c test", 'a');
-	test("this is just %s test", "boy");
-	test("this is just %c %s test", 'a', "boy");
-
+	test_vprintf("this is just a test");
+	test_vprintf("this is just %c test", 'a');
+	test_vprintf("this is just %s test", "boy");
+	test_vprintf("this is just %c %s test", 'a', "boy");
+	test_vprintf("This is a NULL string: %s", NULL);
+	test_vprintf("This is an empty string: %s", "");
+	test_vprintf("These are a lot of %c%c%c%cacters.", 'c', 'h', 'a', 'r');
+	test_vprintf("This contains a %% sign.");
+	test_vprintf("This is a number: %d", 5);
+	test_vprintf("This is a negative number: %d", -123551);
+	test_vprintf("This is a number: %i", 5);
+	test_vprintf("This is a negative number: %i", -123551);
+	test_vprintf("This is the maximum int value: %d", INT_MAX);
+	test_vprintf("This is the minimum int value: %d", INT_MIN);
 
 	return (0);
 }

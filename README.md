@@ -2,9 +2,9 @@
 
 An implementation of the printf function in the c std library.
 
-## test.c
+## test
 
-To test set the DEBUG macro during compilation.
+A directory containing the test program.
 
 Tests are of the form:
 ```
@@ -28,12 +28,22 @@ Identical to Holberton school's _putchar.
 
 ### function _printf
 
-The actual printf function
+The actual printf function.
+
+```
+Initialize va_list
+Set printed = _vprintf(format, va_list)
+Free va_list
+return printed
+```
+
+### function _vprintf
+
+A function that prints the format string using arguments from a va_list
 
 ```
 Declare printed = 0
 
-Initialize variable args
 For each character in format until '\0':
 	if char == '%':
 		switch (next):
@@ -45,10 +55,11 @@ For each character in format until '\0':
 			case 'c':
 				_putchar(c)
 				printed ++
+            case 'd' or 'i':
+                printed += print_number(get_arg())
 	else:
 		_putchar(char)
 		printed++
-Free variable args
 
 Return printed
 ```
@@ -57,7 +68,7 @@ Return printed
 
 ### function print_string
 
-A function that prints a string as is.
+A function that prints a string and returns the number of characters printed.
 
 ```
 Declare printed = 0
@@ -71,11 +82,14 @@ Return printed
 
 ### print_numbers
 
-a function that prints integers
+A function that prints integers and returns the number of characters printed.
 
 ```
-declare a number n
+if n is negative:
+    print '-'
 
+if n >= 10:
+    print_numbers(n / 10)
 
-
+_putchar('0' + (n % 10))
 ```
