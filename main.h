@@ -7,6 +7,6 @@ int _putchar(char c);
 int _vprintf(const char *format, va_list arg_list);
 int _printf(const char *format, ...);
 int print_string(const char *string);
-int print_number(int n);
+int print_number(int n, int base);
 
 #endif

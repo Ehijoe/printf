@@ -25,10 +25,11 @@ int print_string(const char *string)
 /**
  * print_number - Prints a number to stdout
  * @n: The number to print
+ * @base: the base number to print
  *
  * Return: it returns number of characters printed
  */
-int print_number(int n)
+int print_number(int n, int base)
 {
 	unsigned int n1 = n;
 	int printed = 0;
@@ -40,11 +41,11 @@ int print_number(int n)
 		printed++;
 	}
 
-	if (n1 / 10)
+	if (n1 / base)
 	{
-		printed += print_number(n1 / 10);
+		printed += print_number(n1 / base, base);
 	}
 
-	_putchar('0' + (n1 % 10));
+	_putchar('0' + (n1 % base));
 	return (printed + 1);
 }

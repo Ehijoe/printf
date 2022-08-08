@@ -48,7 +48,10 @@ int _vprintf(const char *format, va_list arg_list)
 				break;
 			case 'd':
 			case 'i':
-				printed += print_number(va_arg(arg_list, int));
+				printed += print_number(va_arg(arg_list, int), 10);
+				break;
+			case 'b':
+				printed += print_number(va_arg(arg_list, int), 2);
 				break;
 			default:
 				_putchar('%');
