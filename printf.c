@@ -39,10 +39,6 @@ int _vprintf(const char *format, va_list arg_list)
 			/* Handle Arguments */
 			switch (format[i])
 			{
-				case '%':
-				_putchar('%');
-				printed++;
-				break;
 			case 'c':
 				_putchar(va_arg(arg_list, int));
 				printed++;
@@ -53,6 +49,10 @@ int _vprintf(const char *format, va_list arg_list)
 			case 'd':
 			case 'i':
 				printed += print_number(va_arg(arg_list, int));
+				break;
+			default:
+				_putchar('%');
+				printed++;
 				break;
 			}
 		}

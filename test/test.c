@@ -36,7 +36,11 @@ void test_vprintf(const char *format, ...)
 int main(void)
 {
 	test_vprintf("this is just a test");
+	test_vprintf("This format string has too many arguments: %c", 'a', 'b', 'c');
+	test_vprintf("This format string has too few arguments: %c %c", 'a');
+	test_vprintf("%z is an invalid specifier");
 	test_vprintf("this is just %c test", 'a');
+	test_vprintf("This char is actually an int: %c", (2048 + 'a'));
 	test_vprintf("this is just %s test", "boy");
 	test_vprintf("this is just %c %s test", 'a', "boy");
 	test_vprintf("This is a NULL string: %s", NULL);
