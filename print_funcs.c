@@ -26,7 +26,7 @@ int print_string(const char *string)
  * print_number - Prints a number to stdout
  * @n: The number to print
  *
- * Description: A function that prints an integer to stdout
+ * Return: it returns number of characters printed
  */
 int print_number(int n)
 {

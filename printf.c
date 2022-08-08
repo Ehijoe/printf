@@ -22,6 +22,7 @@ int _printf(const char *format, ...)
 /**
  * _vprintf - An implementation of the stdio.h printf function
  * @format: The formatted string to print
+ * @arg_list: the list of arguments to print
  *
  * Return: The number of characters printed
  */
@@ -33,22 +34,22 @@ int _vprintf(const char *format, va_list arg_list)
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
-   		{
+		{
 			i++;
 			/* Handle Arguments */
 			switch (format[i])
 			{
-	   		case '%':
-   				_putchar('%');
-   				printed++;
+				case '%':
+				_putchar('%');
+				printed++;
 				break;
 			case 'c':
-	   			_putchar(va_arg(arg_list, int));
-   				printed++;
-	   			break;
-   			case 's':
-	   			printed += print_string(va_arg(arg_list, char *));
-   				break;
+				_putchar(va_arg(arg_list, int));
+				printed++;
+				break;
+			case 's':
+				printed += print_string(va_arg(arg_list, char *));
+				break;
 			case 'd':
 			case 'i':
 				printed += print_number(va_arg(arg_list, int));
@@ -56,8 +57,8 @@ int _vprintf(const char *format, va_list arg_list)
 			}
 		}
 		else
-	   	{
-   			_putchar(format[i]);
+		{
+			_putchar(format[i]);
 			printed++;
 		}
 	}
