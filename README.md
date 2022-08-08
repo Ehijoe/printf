@@ -68,3 +68,14 @@ For each char in string until '\0':
 
 Return printed
 ```
+
+### print_numbers
+
+a function that prints integers
+
+```
+declare a number n
+
+
+
+```
