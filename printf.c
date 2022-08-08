@@ -36,7 +36,6 @@ int _vprintf(const char *format, va_list arg_list)
 		if (format[i] == '%')
 		{
 			i++;
-			/* Handle Arguments */
 			switch (format[i])
 			{
 			case 'c':
@@ -52,6 +51,9 @@ int _vprintf(const char *format, va_list arg_list)
 				break;
 			case 'b':
 				printed += print_number(va_arg(arg_list, int), 2);
+				break;
+			case 'r':
+				printed += print_reverse(va_arg(arg_list, char *));
 				break;
 			default:
 				_putchar('%');

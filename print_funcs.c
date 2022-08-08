@@ -49,3 +49,31 @@ int print_number(int n, int base)
 	_putchar('0' + (n1 % base));
 	return (printed + 1);
 }
+
+/**
+ * print_reverse - Prints a string in reverse
+ * @string: A pointer to the string
+ *
+ * Return: The number of characters printed
+ */
+int print_reverse(const char *string)
+{
+	int len;
+	int printed;
+
+	if (string == NULL)
+	{
+		return (print_string("(null)"));
+	}
+	for (len = 0; string[len] != '\0'; len++)
+		continue;
+	printed = len;
+	len--;
+	while (len >= 0)
+	{
+		_putchar(string[len]);
+		len--;
+	}
+
+	return (printed);
+}
