@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stdlib.h>
 
 /**
  * _printf - An implementation of the stdio.h printf function
@@ -29,6 +30,9 @@ int _printf(const char *format, ...)
 int _vprintf(const char *format, va_list arg_list)
 {
 	int i, printed;
+	arg_print_func print;
+	specifier_t *specifier_list = create_specifier_list();
+	argument arg;
 
 	printed = 0;
 	for (i = 0; format[i] != '\0'; i++)
@@ -36,29 +40,20 @@ int _vprintf(const char *format, va_list arg_list)
 		if (format[i] == '%')
 		{
 			i++;
-			switch (format[i])
+			print = get_print_func(format[i], specifier_list);
+			if (print == NULL)
 			{
-			case 'c':
-				_putchar(va_arg(arg_list, int));
+				_putchar(format[i]);
 				printed++;
-				break;
-			case 's':
-				printed += print_string(va_arg(arg_list, char *));
-				break;
-			case 'd':
-			case 'i':
-				printed += print_number(va_arg(arg_list, int), 10);
-				break;
-			case 'b':
-				printed += print_number(va_arg(arg_list, int), 2);
-				break;
-			case 'r':
-				printed += print_reverse(va_arg(arg_list, char *));
-				break;
-			default:
-				_putchar('%');
-				printed++;
-				break;
+			}
+			else
+			{
+				get_argument(format[i],
+					     arg_list,
+					     specifier_list,
+					     &arg
+					);
+				printed += print(arg);
 			}
 		}
 		else
@@ -67,5 +62,6 @@ int _vprintf(const char *format, va_list arg_list)
 			printed++;
 		}
 	}
+	free(specifier_list);
 	return (printed);
 }

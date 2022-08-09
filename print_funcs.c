@@ -51,6 +51,34 @@ int print_number(int n, int base)
 }
 
 /**
+ * print_uint - Print an unsigned integer to a particular base
+ * @n: The number to print
+ * @base: The base to print the number to
+ * @extra_dig_start: The digit after 9 if base > 10
+ *
+ * Return: The number of characters printed
+ */
+int print_uint(unsigned int n, unsigned int base, char extra_dig_start)
+{
+	int printed = 0;
+
+	if (n / base)
+	{
+		printed += print_uint(n / base, base, extra_dig_start);
+	}
+
+	if ((n % base) > 9)
+	{
+		_putchar(extra_dig_start + (n % base) - 10);
+	}
+	else
+	{
+		_putchar('0' + (n % base));
+	}
+	return (printed + 1);
+}
+
+/**
  * print_reverse - Prints a string in reverse
  * @string: A pointer to the string
  *

@@ -57,6 +57,19 @@ void test_mandatory(void)
 }
 
 /**
+ * test_advanced - Tests for the advanced tasks
+ */
+void test_advanced(void)
+{
+	/* Tests for The unsigned integer formats */
+	test_vprintf("This is an unsigned int: %u", 3256);
+	test_vprintf("This is the maximum unsigned int: %u", UINT_MAX);
+	test_vprintf("This is an octal int: %o", 21554);
+	test_vprintf("This is a hex int: %x", 235134);
+	test_vprintf("This is a capital hex int: %X", 235134);
+}
+
+/**
  * test_custom_specifiers - Test the custom specifiers not in printf
  */
 void test_custom_specifiers(void)
@@ -83,6 +96,7 @@ int main(void)
 {
 	test_mandatory();
 	test_custom_specifiers();
+	test_advanced();
 
 	return (0);
 }
