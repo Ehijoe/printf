@@ -1,6 +1,13 @@
 # Printf
 
 An implementation of the printf function in the c std library.
+It accepts the format specifiers:
+- %d works for integers
+- %c works for characters
+- %i works for integers
+- %b works for binary outputs
+- %s works for strings
+- %r works to reverse a string
 
 ## test
 
