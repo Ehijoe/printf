@@ -33,7 +33,10 @@ int _vprintf(const char *format, va_list arg_list)
 	arg_print_func print;
 	specifier_t *specifier_list = create_specifier_list();
 	argument arg;
+	buffer_t buffer;
 
+	buffer.buff = malloc(1024);
+	buffer.len = 0;
 	printed = 0;
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -43,7 +46,7 @@ int _vprintf(const char *format, va_list arg_list)
 			print = get_print_func(format[i], specifier_list);
 			if (print == NULL)
 			{
-				_putchar(format[i]);
+				_putchar(format[i], &buffer);
 				printed++;
 			}
 			else
@@ -53,15 +56,17 @@ int _vprintf(const char *format, va_list arg_list)
 					     specifier_list,
 					     &arg
 					);
-				printed += print(arg);
+				printed += print(arg, &buffer);
 			}
 		}
 		else
 		{
-			_putchar(format[i]);
+			_putchar(format[i], &buffer);
 			printed++;
 		}
 	}
+	flush(&buffer);
 	free(specifier_list);
+	free(buffer.buff);
 	return (printed);
 }
