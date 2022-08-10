@@ -8,7 +8,11 @@ It accepts the format specifiers:
 - %b works for binary outputs
 - %s works for strings
 - %r works to reverse a string
-
+- %u works for unsigned decimal integer
+- %o works for octal integer
+- %x works for unsigned hexadecimal integer
+- %0 works for null
+- %X works for unsigned hexadecimal integer capital letters
 ## test
 
 A directory containing the test program.
