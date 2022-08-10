@@ -34,6 +34,8 @@ Prototype for:
 ## putchar.c
 
 Identical to Holberton school's _putchar.
+Buffer stores the variable supposed to be taken in or sent out.
+fflush function is used to immediately flash out contents of the output stream
 
 ## printf.c
 
